@@ -16,12 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestParallel {
 
+    private final static int NUMERO_WORKERS = 1;
+
     @Test
     public void testAll() {
         Results results = Runner.path("classpath:karate")
                 .outputCucumberJson(true)    
                 .tags("~@ignore")          
-                .parallel(4);  
+                .parallel(NUMERO_WORKERS);
         generateReport(results.getReportDir());
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }

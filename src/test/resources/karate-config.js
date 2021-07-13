@@ -5,12 +5,12 @@ function fn() {
         env = 'dev';
     }
     var config = {
-        appId: 'my.app.id',
-        appSecret: 'my.secret',
         urlBase: 'http://localhost:8080',
         anotherUrlBase: 'https://dev-host.com/v1/'
     };
-    if (env == 'qa') {
+    if (env == 'dev') {
+        config.urlBase = 'http://dev-localhost:8080';
+    } else if (env == 'qa') {
         config.urlBase = 'http://qa-localhost:8080';
     } else if (env == 'pdn') {
         config.urlBase = 'http://pdn-localhost:8443';
