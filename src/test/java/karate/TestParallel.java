@@ -19,14 +19,13 @@ public class TestParallel {
     @Test
     public void testAll() {
         Results results = Runner.path("classpath:karate")
-                .outputCucumberJson(true)    // generar json para el reporte de cucumber
-                .tags("~@ignore")           // ignorar algun escenario
-                .parallel(4);   // Paralelizacion en 4 workers de máquina
+                .outputCucumberJson(true)    
+                .tags("~@ignore")          
+                .parallel(4);  
         generateReport(results.getReportDir());
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 
-    // Generacion del reporte de cucumber para consolidar todos los escenarios en paralelo
     public static void generateReport(String karateOutputPath) {
         Collection<File> jsonFiles = FileUtils.listFiles(new File(karateOutputPath), new String[] {"json"}, true);
         List<String> jsonPaths = new ArrayList<>(jsonFiles.size());
